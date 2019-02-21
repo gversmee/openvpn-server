@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# configure iptables (from https://arashmilani.com/post?id=53)
+DEV=$(awk -F 'dev '  '{print $2}'  <<<  `ip route | grep default | grep dev` | awk '{print $1;}')
+iptables -A INPUT -i eth0 -m state --state NEW -p udp --dport 443 -j ACCEPT
+iptables -A INPUT -i tun+ -j ACCEPT
+iptables -A FORWARD -i tun+ -j ACCEPT
+iptables -A FORWARD -i tun+ -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i eth0 -o tun+ -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -t nat -A POSTROUTING -s 10.8.0.0/8 -o $DEV -j MASQUERADE
+iptables -A OUTPUT -o tun+ -j ACCEPT
+
+#create the key
+cd ~/openvpn-ca/
+source vars
+./clean-all
+./build-ca --batch
+./build-key-server --batch server
+./build-dh
+openvpn --genkey --secret ~/openvpn-ca/keys/vpn.key
+./build-key --batch client
+cp keys/ca.crt keys/server.crt keys/server.key keys/vpn.key keys/dh2048.pem /etc/openvpn
+
+# create client config file
+IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+echo "remote $IP 443" >> ~/clients/base.conf
+~/clients/gen_config.sh client
+
+# start server
+cd /etc/openvpn
+openvpn /etc/openvpn/server.conf

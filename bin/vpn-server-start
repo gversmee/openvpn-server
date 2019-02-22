@@ -1,0 +1,33 @@
+#!/bin/bash
+
+PORT=443
+OUT=~
+
+while getopts i:p:o: option
+  do
+    case "${option}"
+      in
+      i) KEY=${OPTARG};;
+      p) PORT=${OPTARG};;
+      o) OUT=${OPTARG};;
+    esac
+  done
+shift $((OPTIND -1))
+
+ssh -i $KEY $1 "sudo docker run -d -p ${PORT}:443 --cap-add=NET_ADMIN --privileged -v ~/client_config:/root/clients/files gversmee/openvpn-server"
+
+loadingText="Creating the VPN server"
+
+while ssh -i $KEY $1  '[ ! -f ~/client_config/client.ovpn ]' ; do
+  echo -ne "$loadingText.\r"
+  sleep 0.5
+  echo -ne "$loadingText..\r"
+  sleep 0.5
+  echo -ne "$loadingText...\r"
+  sleep 0.5
+  echo -ne "\r\033[K"
+  echo -ne "$loadingText\r"
+  sleep 0.5
+done
+
+scp -i $KEY ${1}:~/client_config/client.ovpn $OUT

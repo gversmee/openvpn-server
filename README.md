@@ -1,5 +1,18 @@
 # openvpn-server
 
+How to install:
+
+brew tap gversmee/open-vpn-server
+brew install open-vpn-server
+
+How to start my server:
+vpn-server-start -i path/to/my/ssh/key -p port(defaut=443) -o output/of/the/config/file publicDNSofmyremoteserver
+vpn-server-stop -i path/to/my/ssh/key publicDNSofmyremoteserver
+
+
+
+
+
 
 From: https://medium.com/teendevs/setting-up-an-openvpn-server-on-google-compute-engine-9ff760d775d9
 

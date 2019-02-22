@@ -1,5 +1,7 @@
 #!/bin/bash
+
 KEY_DIR=/etc/openvpn
+IP=`dig @resolver1.opendns.com ANY myip.opendns.com +short`
 cat <(echo -e 'client
 dev tun
 proto tcp
@@ -23,4 +25,5 @@ ${KEY_DIR}/client.key \
 <(echo -e '</key>\n<tls-auth>') \
 ${KEY_DIR}/vpn.key \
 <(echo -e '</tls-auth>') \
-> ~/client/files/client.ovpn
+<(echo 'remote' $IP '443') \
+> /etc/openvpn/config-files/client/client.ovpn

@@ -4,12 +4,10 @@ while getopts i: option
   do
     case "${option}"
       in
-      i) KEY=${OPTARG}
-      shift
-      shift
-      ;;
+      i) KEY=${OPTARG};;
     esac
   done
+  shift $((OPTIND -1))
 
-ID=`ssh -i $KEY $1 "docker ps -qf 'ancestor=gversmee/openvpn-server'"`
-ssh -i $KEY $1 "docker stop $ID ; sudo rm -rf ~/client_config"
+ID=`ssh -i $KEY $1 "sudo docker ps -qf 'ancestor=gversmee/openvpn-server'"`
+ssh -i $KEY $1 "sudo docker stop $ID ; sudo rm -rf ~/client_config"

@@ -14,7 +14,7 @@ while getopts i:p:o: option
   done
 shift $((OPTIND -1))
 
-ssh -i $KEY $1 "sudo docker run -d -p ${PORT}:443 --cap-add=NET_ADMIN --privileged -v ~/client_config:/root/clients/files gversmee/openvpn-server"
+ssh -i $KEY $1 "sudo docker run -d -p ${PORT}:443 --cap-add=NET_ADMIN --privileged -v ~/client_config:/etc/openvpn/config-files/client gversmee/openvpn-server"
 
 loadingText="Creating the VPN server"
 

@@ -20,10 +20,10 @@ iptables -A OUTPUT -o tun+ -j ACCEPT
 openvpn --genkey --secret /usr/share/easy-rsa/pki/private/vpn.key
 
 cd /usr/share/easy-rsa/pki
-cp ca.crt issued/server.crt private/server.key private/vpn.key dh.pem /etc/openvpn
+cp ca.crt issued/server.crt private/server.key issued/client.crt private/client.key private/vpn.key dh.pem /etc/openvpn
 
 # create client config file
-~/etc/openvpn/config-files/gen_config.sh client
+/etc/openvpn/config-files/gen_config.sh
 
 # start server
 cd /etc/openvpn

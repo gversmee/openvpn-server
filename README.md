@@ -1,6 +1,7 @@
 # openvpn-server
 
 ### How to install:
+#### Mac OS / Linux
 
 ``` bash
 brew tap gversmee/open-vpn-server

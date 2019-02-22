@@ -1,0 +1,13 @@
+class OpenvpnServer < Formula
+  desc ""
+  homepage ""
+  url "https://github.com/gversmee/openvpn-server/archive/v0.9.tar.gz"
+  sha256 "dc1d6e24169ba02d2ee30aadd81d0762ff6b89e7494f720ccc75b2810eb34691"
+
+
+  def install
+    bin.install "vpn-server-start"
+    bin.install "vpn-server-stop"
+  end
+
+end

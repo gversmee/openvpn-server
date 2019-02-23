@@ -1,4 +1,5 @@
 ![GitHub (pre-)release](https://img.shields.io/github/release-pre/gversmee/openvpn-server.svg)
+![GitHub](https://img.shields.io/github/license/gversmee/openvpn-server.svg)
 
 # openvpn-server
 

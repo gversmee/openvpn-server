@@ -1,5 +1,6 @@
 ![GitHub (pre-)release](https://img.shields.io/github/release-pre/gversmee/openvpn-server.svg)
 ![GitHub](https://img.shields.io/github/license/gversmee/openvpn-server.svg)
+[![DOI](https://zenodo.org/badge/171182307.svg)](https://zenodo.org/badge/latestdoi/171182307)
 
 # openvpn-server
 

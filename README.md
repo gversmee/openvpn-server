@@ -6,7 +6,7 @@
 
 This software is intended to create an openvpn server on a remote machine in order to change your IP address.
 It requires:
-- SSH access to a remote machine, with a port open (the software uses by default port 443)
+- SSH access to a remote machine (e.g aws ec2 or google cloud vm), with a port open (the software uses by default port 443)
 - Docker installed and docker daemon running on that machine
 - 25Mb of disk space for the Docker image
 

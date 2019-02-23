@@ -1,6 +1,4 @@
-[![GitHub release]]
-
-(https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://github.com/gversmee/openvpn-server/releases)
+![GitHub (pre-)release](https://img.shields.io/github/release-pre/gversmee/openvpn-server.svg)
 
 # openvpn-server
 

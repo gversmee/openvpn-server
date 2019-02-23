@@ -1,4 +1,5 @@
 ![GitHub (pre-)release](https://img.shields.io/github/release-pre/gversmee/openvpn-server.svg)
+![Docker Automated build](https://img.shields.io/docker/automated/gversmee/openvpn-server.svg)
 
 # openvpn-server
 

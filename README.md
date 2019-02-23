@@ -4,7 +4,7 @@
 
 # openvpn-server
 
-This software is intended to create an openvpn server on a remote machine in order to change your IP address.
+This software is intended to create an openvpn server on a remote machine and sends you the client config file. It allows you to mask your IP address.
 It requires:
 - SSH access to a remote machine (e.g aws ec2 or google cloud vm), with a port open (the software uses by default port 443)
 - Docker installed and docker daemon running on that machine

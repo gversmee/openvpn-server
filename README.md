@@ -4,26 +4,30 @@
 
 # openvpn-server
 
+This software is intended to create an openvpn server on a remote machine in order to change your IP address.
+It requires:
+- SSH access to a remote machine, with a port open (the software uses by default port 443)
+- Docker installed and docker daemon running on that machine
+- 25Mb of disk space for the Docker image
+
 ### How to install:
 #### Mac OS / Linux
 
 ``` bash
-brew tap gversmee/open-vpn-server
-brew install open-vpn-server
+brew tap gversmee/openvpn-server
+brew install openvpn-server
 ```
 
 ### How to start my server:
 ``` bash
 vpn-server-start -i path/to/my/ssh/key -p port(defaut=443) -o output/of/the/config/file publicDNSofmyremoteserver
-vpn-server-stop -i path/to/my/ssh/key publicDNSofmyremoteserver
 ```
 
+This will generate an openvpn client config file. Go to step 10 of that article to see how to use this config file.
+https://medium.com/teendevs/setting-up-an-openvpn-server-on-google-compute-engine-9ff760d775d9
 
 
-
-
-From: https://medium.com/teendevs/setting-up-an-openvpn-server-on-google-compute-engine-9ff760d775d9
-
+### How to stop my server:
 ``` bash
-gcloud compute --project=openvpn-231822 instances create instance-1 --zone=us-east1-b --machine-type=f1-micro --subnet=default --network-tier=PREMIUM --can-ip-forward --maintenance-policy=MIGRATE --service-account=946316501079-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append --tags=https-server --image=cos-stable-72-11316-136-0 --image-project=cos-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=instance-1
+vpn-server-stop -i path/to/my/ssh/key publicDNSofmyremoteserver
 ```
